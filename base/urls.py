@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from chatbots.views import HomeKeyboardViewSet
+from chatbots.views import *
+from django.http import HttpResponse, HttpResponseNotFound
+
 urlpatterns = [
-    url(r'^keyboard/', HomeKeyboardViewSet.as_view())
+    url(r'^keyboard', HomeKeyboardViewSet.as_view()),
+    url(r'^message', MessageViewSet.as_view())
 ]
