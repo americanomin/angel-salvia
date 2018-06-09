@@ -13,12 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
-from chatbots.views import *
-from django.http import HttpResponse, HttpResponseNotFound
+from django.conf.urls import url, include
+from src.chatbots import *
 
 urlpatterns = [
-    url(r'^keyboard', HomeKeyboardViewSet.as_view()),
-    url(r'^message', MessageViewSet.as_view())
+    url(r'^', include('src.chatbots.urls'))
 ]
