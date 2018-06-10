@@ -1,5 +1,4 @@
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 
 
@@ -14,8 +13,5 @@ def home_keyboard(request):
 
 @api_view(['POST'])
 def message(request):
-    result = {
-        "message":
-            {"text": "안녕. 지민아"}
-    }
+    result = {"message": {"text": "안녕. 지민아"}}
     return Response(result)

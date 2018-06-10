@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from src.chatbots import *
+from chatbot import *
 
 urlpatterns = [
-    url(r'^', include('src.chatbots.urls'))
+    url(r'^', include('chatbot.urls'))
 ]
