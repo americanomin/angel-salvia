@@ -7,12 +7,12 @@ class YogaSubject:
 
     def description(self):
         description = {"AM_FLOW": "",
-                       "Intro Ashtanga": "균형 감각 및 근력 향상과 유연성 강화에 도움이 되는 수업이에요.",
+                       "Intro Ashtanga": "균형 감각 및 근력 향상과 유연성 강화에 도움이 되는 수업이야.",
                        "Healing": "",
-                       "Therapy": "신체 불균형의 원인이 되는 근육을 이해하고 바른자세를 유지하도록 올바른 정렬을 배우는 수업이에요.",
-                       "hatha": "아사나와 호흡에 깊이 집중함으로써 몸과 마음에 평온을 가져다주는 수업이에요.",
-                       "vinyasa": "활기찬 속도감과 물 흐르듯 자연스럽게 이어지는 아사나로 몸 안의 여러 근육들의 힘을 길러주는 수업이에요.",
-                       "Ashtanga": "균형 감각과 근력 향상과 유연성 강화에 도움이 되는 수업이에요.",
+                       "Therapy": "신체 불균형의 원인이 되는 근육을 이해하고 바른자세를 유지하도록 올바른 정렬을 배우는 수업이야.",
+                       "hatha": "아사나와 호흡에 깊이 집중함으로써 몸과 마음에 평온을 가져다주는 수업이야.",
+                       "vinyasa": "활기찬 속도감과 물 흐르듯 자연스럽게 이어지는 아사나로 몸 안의 여러 근육들의 힘을 길러주는 수업이야.",
+                       "Ashtanga": "균형 감각과 근력 향상과 유연성 강화에 도움이 되는 수업이야.",
                        "Pilates": ""}
         return description[self.title]
 
@@ -37,7 +37,7 @@ class YogaInfo:
     def today_info(self):
         today_schedule = self._schedule()[datetime.date.today().month][self._day_of_week()]
         return "\n\n".join(
-            [f"오늘의 {i+1}번째 요가 시작 시간은 {time_plan.from_time}이고, {time_plan.subject.title} 수업이에요. \n{time_plan.subject.description()} " for i, time_plan in
+            [f"오늘의 {i+1}번째 요가 시작 시간은 {time_plan.from_time}이고, {time_plan.subject.title} 수업이야. \n{time_plan.subject.description()} " for i, time_plan in
              enumerate(today_schedule)])
 
     @staticmethod
