@@ -16,10 +16,9 @@ class YogaSubject:
                        "Pilates": ""}
         return description[self.title]
 
-
 class YogaInfo:
     WORD = "ㅇㄱ"
-
+    LAST_SEARCH_TIME = 20
     AM_FLOW = YogaSubject("AM_FLOW")
     INTRO_ASHTANGA = YogaSubject("Intro Ashtanga")
     HEALING = YogaSubject("Healing")
@@ -34,18 +33,36 @@ class YogaInfo:
         return text in YogaInfo.WORD
 
     @classmethod
-    def today_info(self):
-        today_schedule = self._schedule()[datetime.date.today().month][self._day_of_week()]
+    def today_info(cls):
+        today_schedule = cls._schedule()[datetime.date.today().month][cls._search_for_day_of_week()]
         return "\n\n".join(
-            [f"오늘의 {i+1}번째 요가 시작 시간은 {time_plan.from_time}이고, {time_plan.subject.title} 수업이야. \n{time_plan.subject.description()} " for i, time_plan in
+            [f"{cls._str_day_info()}의 {i+1}번째 요가 시작 시간은 {time_plan.from_time}이고, {time_plan.subject.title} 수업이야. \n{time_plan.subject.description()} " for i, time_plan in
              enumerate(today_schedule)])
 
-    @staticmethod
-    def _day_of_week():
-        return datetime.datetime.today().weekday()
+    @classmethod
+    def _now_hour(cls):
+        return int(datetime.datetime.now().strftime('%H'))
 
-    @staticmethod
-    def _schedule():
+    @classmethod
+    def _is_required_today_info(cls):
+        return cls._now_hour() <= cls.LAST_SEARCH_TIME
+
+    @classmethod
+    def _search_for_day_of_week(cls):
+        if cls._is_required_today_info():
+            return datetime.datetime.today().weekday()
+        else:
+            return datetime.datetime.today().weekday() + 1
+
+    @classmethod
+    def _str_day_info(cls):
+        if cls._is_required_today_info():
+            return '오늘'
+        else:
+            return '내일'
+
+    @classmethod
+    def _schedule(cls):
         june_plan = {
             0: [TimePlan("07:00", "08:00", YogaInfo.AM_FLOW),
                 TimePlan("18:50", "19:50", YogaInfo.INTRO_ASHTANGA),
